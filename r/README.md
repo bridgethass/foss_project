@@ -2,8 +2,8 @@
 
 To run neon_spectral_signatures_full_SJER.R in the CyVerse NEON community discovery RStudio environment:
 
-  1. login to CyVerse discovery, join NEON community folder and 
-  2. launch RStudio geospatial container
+  1. login to CyVerse discovery (de.cyverse.org/de), join NEON community folder (Apps > My Apps > My Communities > NEON)
+  2. launch RStudio Geospatial Latest container
   3. open the terminal tab, clone the foss_project repo (and optionally the neon-shiny-browser repo) into local directory
   ```
   git clone https://github.com/bridgethass/foss_project.git
