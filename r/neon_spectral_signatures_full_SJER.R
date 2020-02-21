@@ -12,22 +12,25 @@ library(ggplot2)
 
 # set working directory to ensure R can find the file we wish to import and where
 # we want to save our files. Be sure to move the download into your working directory!
-wd="~/Desktop/Hyperspectral_Tutorial/" #This will depend on your local environment
+wd="./data/" #This will depend on your local environment
 setwd(wd)
 
 # define filepath to the hyperspectral dataset
-f <- paste0(wd,"NEON_D17_SJER_DP3_257000_4112000_reflectance.h5")
+# f <- paste0(wd,"NEON_D17_SJER_DP3_257000_4112000_reflectance.h5")
+sjer_h5 = "/home/rstudio/foss_project/r/data/NEON_D17_SJER_DP3_257000_4112000_reflectance.h5"
+sjer_tif = "/home/rstudio/foss_project/r/data/NEON_hyperspectral_tutorial_SJER_RGB_stack.tif"
 
 # read in the wavelength information from the HDF5 file
-wavelengths <- h5read(f,"/SJER/Reflectance/Metadata/Spectral_Data/Wavelength")
+wavelengths <- h5read(sjer_h5,"/SJER/Reflectance/Metadata/Spectral_Data/Wavelength")
 
 # grab scale factor from the Reflectance attributes
-reflInfo<- h5readAttributes(f,"/SJER/Reflectance/Reflectance_Data" )
+reflInfo<- h5readAttributes(sjer_h5,"/SJER/Reflectance/Reflectance_Data" )
 
 scaleFact = reflInfo$Scale_Factor
 
 # Read in RGB image as a 'stack' rather than a plain 'raster'
-rgbStack <- stack(paste0(wd,"NEON_hyperspectral_tutorial_SJER_RGB_stack.tif"))
+# rgbStack <- stack(paste0(wd,"NEON_hyperspectral_tutorial_SJER_RGB_stack.tif"))
+rgbStack <- stack(sjer_tif)
 
 ## Plot as RGB image
 plotRGB(rgbStack,
@@ -142,3 +145,4 @@ ggplot()+
   ggtitle("Land cover spectral signatures")+
   theme(plot.title = element_text(hjust = 0.5, size=20))+
   xlab("Wavelength")
+
