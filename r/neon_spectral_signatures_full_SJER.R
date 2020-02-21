@@ -68,7 +68,7 @@ Pixel_df=as.data.frame(wavelengths)
 for(i in 1:length(c$cell)){
   
   # extract Spectra from a single pixel
-  aPixel <- h5read(f,"/SJER/Reflectance/Reflectance_Data",
+  aPixel <- h5read(sjer_h5,"/SJER/Reflectance/Reflectance_Data",
                    index=list(NULL,c$col[i],c$row[i]))
   
   # scale reflectance values from 0-1
@@ -108,7 +108,7 @@ ggplot()+
 # atmospheric absorbtion. 
 
 # grab Reflectance metadata (which contains absorption band limits)
-reflMetadata<- h5readAttributes(f,"/SJER/Reflectance" )
+reflMetadata<- h5readAttributes(sjer_h5,"/SJER/Reflectance" )
 
 ab1 = reflMetadata$Band_Window_1_Nanometers
 ab2 = reflMetadata$Band_Window_2_Nanometers
